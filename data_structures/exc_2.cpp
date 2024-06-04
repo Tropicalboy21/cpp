@@ -13,17 +13,17 @@ int main()
     {
         cout << "\n **** Libro " << i + 1 << "****:\n";
         cout << "titulo: ";
-        cin >> titulos[i];
+        getline(cin, titulos[i]);
         cout << "autor:";
-        cin >> autores[i];
+        getline(cin, autores[i]);
     }
 
     for (int i = 0; i < 3; i++)
     {
         cout << "\n **** Libro " << i + 1 << "****:\n";
-        cout << "titulo:";
-        cout << titulos[i];
-        cout << "autores:";
-        cout << titulos[i];
+        cout << "titulo: " << endl;
+        cout << titulos[i] << "\n";
+        cout << "autores: " << endl;
+        cout << autores[i] << "\n";
     }
 }
