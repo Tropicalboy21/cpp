@@ -6,7 +6,6 @@ int valor1, valor2, valor3;
 
 void ingresarValores()
 {
-
     cout << "Porfavor ingrese 3 valores" << endl;
     cout << "Valor 1: ";
     cin >> valor1;
