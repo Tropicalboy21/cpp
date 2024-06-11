@@ -3,6 +3,7 @@
 using namespace std;
 
 int numVector[50], tam, dato, i;
+int izq, der, centro, banda;
 
 // Definicion de las funciones cargar y buscar
 void cargar(int vector[50], int tam)
@@ -24,25 +25,38 @@ void mostrar(int vector[50], int tam)
     }
 }
 
-void buscar(int vector[50], int tam, int dato)
+void busqueda_binaria(int vector[50], int tam, int dato)
 {
+    int izq, der, centro, banda;
 
-    bool encontrado = true;
-    for (i = 0; i < tam; i++)
+    izq = 0;
+    der = tam - 1;
+    centro = 0;
+    banda = 0;
+
+    while (izq <= der && banda == 0)
     {
-        if (dato == numVector[i])
+        centro = (der + izq) / 2;
+        if (vector[centro] == dato)
         {
-            cout << "El dato se encuentra en la posición No. " << i << ": " << "del vector" << endl;
+            banda = 1;
         }
         else
         {
-            encontrado = false;
+            if (dato > vector[centro])
+            {
+                izq = centro + 1;
+            }
+            else
+            {
+                der = centro - 1;
+            }
         }
     }
 
-    if (encontrado == false)
+    if (banda == 1)
     {
-        cout << "El dato no se encuentra dentro del vector " << endl;
+        cout << "El dato se encuentra en la posición No. " << centro << " del vector" << endl;
     }
 }
 
@@ -64,5 +78,5 @@ int main()
     system("clear");
     cout << "Digite el dato a buscar del vector: ";
     cin >> dato;
-    buscar(numVector, tam, dato);
+    busqueda_binaria(numVector, tam, dato);
 }
