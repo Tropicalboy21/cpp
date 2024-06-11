@@ -58,6 +58,10 @@ void busqueda_binaria(int vector[50], int tam, int dato)
     {
         cout << "El dato se encuentra en la posición No. " << centro << " del vector" << endl;
     }
+    else
+    {
+        cout << "El dato buscado NO se encuentra dentro del Vector" << endl;
+    }
 }
 
 void pause()
