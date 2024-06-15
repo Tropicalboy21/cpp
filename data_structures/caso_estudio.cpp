@@ -178,15 +178,15 @@ void Llenado_vector2()
     do
     {
         cout << "\nIngrese el tamaño del segundo vector: ";
-        cin >> tam;
+        cin >> tam2;
 
-        if (tam < 1 || tam > 10)
+        if (tam2 < 1 || tam2 > 10)
         {
             cout << "El tamaño debe ser entre 1 y 10" << endl;
         }
-    } while (tam < 1 || tam > 10);
+    } while (tam2 < 1 || tam2 > 10);
 
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; i < tam2; i++)
     {
         cout << "Ingrese el valor numero " << i + 1 << ": ";
         cin >> vectorSecundario[i];
@@ -210,6 +210,8 @@ void Fusionar(int vectorInicial[], int tam, int vectorSecundario[], int tam2, in
     {
         vectorResultado[k++] = vectorSecundario[j++];
     }
+
+    // ordenarVector(vectorResultado, tam + tam2);
 
     cout << "Vector fusionado: ";
     for (int l = 0; l < (tam + tam2); l++)
