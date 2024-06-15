@@ -3,6 +3,8 @@
 using namespace std;
 
 int vectorInicial[10], tam, opcion;
+int vectorSecudario[10], tam2;
+int vectorResultado[20], tam3;
 
 void pause()
 {
