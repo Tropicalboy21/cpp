@@ -33,8 +33,7 @@ void sumar_arreglo(int edades[], int cant)
     {
         suma = suma + edades[i];
     }
-    aumento = suma *
-              +suma;
+    aumento = suma * +suma;
     cout << "\n La suma de las edades en el vector es igual a: " << suma << endl;
     cout << "\n Dicha suma aumentada en un 50% es igual a: " << aumento << endl;
 }

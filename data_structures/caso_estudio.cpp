@@ -108,16 +108,67 @@ void Promedio(int vectorInicial[], int tam)
     pause();
 }
 
-void SumarAumentar()
+void SumarAumentar(int vectorInicial[], int tam)
 {
+    double sum, aumento, resultado;
+
+    for (int i = 0; i < tam; i++)
+    {
+        sum += vectorInicial[i];
+    }
+
+    aumento = sum * 0.5;
+
+    resultado = sum + aumento;
+
+    cout << "El resultado de la suma de los números del vector es: " << sum << " y dicha suma aumentada en un 50% es: " << resultado << "." << endl;
+    pause();
 }
 
-void Mayor()
+void ordenarVector(int vectorInicial[], int tam)
 {
+    bool ordenado;
+
+    for (int i = 0; i < tam; ++i)
+    {
+        ordenado = false;
+        for (int j = 0; j < tam - i - 1; ++j)
+        {
+            if (vectorInicial[j] > vectorInicial[j + 1])
+            {
+                swap(vectorInicial[j], vectorInicial[j + 1]);
+                ordenado = true;
+            }
+        }
+        if (!ordenado)
+        {
+            break;
+        }
+    }
 }
 
-void Menor()
+void Mayor(int vectorInicial[], int tam)
 {
+    int Mayor;
+
+    ordenarVector(vectorInicial, tam);
+
+    Mayor = vectorInicial[tam - 1];
+
+    cout << "El dato mayor del vector es: " << Mayor << endl;
+    pause();
+}
+
+void Menor(int vectorInicial[], int tam)
+{
+    int Menor;
+
+    ordenarVector(vectorInicial, tam);
+
+    Menor = vectorInicial[0];
+
+    cout << "El dato mayor del vector es: " << Menor << endl;
+    pause();
 }
 
 void Fusionar()
@@ -143,13 +194,13 @@ void procesarOpcion(int opcion)
         Promedio(vectorInicial, tam);
         break;
     case 5:
-        SumarAumentar();
+        SumarAumentar(vectorInicial, tam);
         break;
     case 6:
-        Mayor();
+        Mayor(vectorInicial, tam);
         break;
     case 7:
-        Menor();
+        Menor(vectorInicial, tam);
         break;
     case 8:
         Fusionar();
@@ -170,7 +221,7 @@ void menu()
 {
     do
     {
-        cout << "***** Menu *****" << endl;
+        cout << "\n***** Menu *****" << endl;
         cout << "1. Llenar el Vector Principal" << endl;
         cout << "2. Ordenar Números Ascendentemente" << endl;
         cout << "3. Ordenar Números Descendentemente" << endl;
