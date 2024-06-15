@@ -14,8 +14,16 @@ void pause()
 
 void Llenado_vector()
 {
-    cout << "Ingrese el tamaño del vector: ";
-    cin >> tam;
+    do
+    {
+        cout << "\nIngrese el tamaño del vector: ";
+        cin >> tam;
+
+        if (tam < 1 || tam > 10)
+        {
+            cout << "El tamaño debe ser entre 1 y 10" << endl;
+        }
+    } while (tam < 1 || tam > 10);
 
     for (int i = 0; i < tam; i++)
     {
@@ -85,8 +93,19 @@ void Ord_Num_Des(int vectorInicial[], int tam)
     pause();
 }
 
-void Promedio()
+void Promedio(int vectorInicial[], int tam)
 {
+    double sum, promedio;
+
+    for (int i = 0; i < tam; i++)
+    {
+        sum += vectorInicial[i];
+    }
+
+    promedio = sum / tam;
+
+    cout << "El resultado del promedio de los números contenidos en el arreglo es: " << promedio << endl;
+    pause();
 }
 
 void SumarAumentar()
@@ -121,7 +140,7 @@ void procesarOpcion(int opcion)
         Ord_Num_Des(vectorInicial, tam);
         break;
     case 4:
-        Promedio();
+        Promedio(vectorInicial, tam);
         break;
     case 5:
         SumarAumentar();
