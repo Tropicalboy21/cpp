@@ -3,6 +3,10 @@
     "files.associations": {
         "iostream": "cpp",
         "iosfwd": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "string": "cpp",
+        "__bit_reference": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp"
     }
 }

@@ -3,8 +3,8 @@
 using namespace std;
 
 int vectorInicial[10], tam, opcion;
-int vectorSecudario[10], tam2;
-int vectorResultado[20], tam3;
+int vectorSecundario[10], tam2;
+int vectorResultado[20];
 
 void pause()
 {
@@ -173,8 +173,51 @@ void Menor(int vectorInicial[], int tam)
     pause();
 }
 
-void Fusionar()
+void Llenado_vector2()
 {
+    do
+    {
+        cout << "\nIngrese el tamaño del segundo vector: ";
+        cin >> tam;
+
+        if (tam < 1 || tam > 10)
+        {
+            cout << "El tamaño debe ser entre 1 y 10" << endl;
+        }
+    } while (tam < 1 || tam > 10);
+
+    for (int i = 0; i < tam; i++)
+    {
+        cout << "Ingrese el valor numero " << i + 1 << ": ";
+        cin >> vectorSecundario[i];
+    }
+
+    pause();
+}
+
+void Fusionar(int vectorInicial[], int tam, int vectorSecundario[], int tam2, int vectorResultado[])
+{
+    int i = 0, j = 0, k = 0;
+
+    // Copy elements from array1 to mergedArray
+    while (i < tam)
+    {
+        vectorResultado[k++] = vectorInicial[i++];
+    }
+
+    // Copy elements from array2 to mergedArray
+    while (j < tam2)
+    {
+        vectorResultado[k++] = vectorSecundario[j++];
+    }
+
+    cout << "Vector fusionado: ";
+    for (int l = 0; l < (tam + tam2); l++)
+    {
+        cout << vectorResultado[l] << "  ";
+    }
+    cout << endl;
+    pause();
 }
 
 void procesarOpcion(int opcion)
@@ -205,7 +248,8 @@ void procesarOpcion(int opcion)
         Menor(vectorInicial, tam);
         break;
     case 8:
-        Fusionar();
+        Llenado_vector2();
+        Fusionar(vectorInicial, tam, vectorSecundario, tam2, vectorResultado);
         break;
     case 9:
         cout << "Gracias, hasta pronto" << endl;
