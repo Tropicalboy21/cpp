@@ -11,7 +11,7 @@ void pause()
     std::cout << "\nPress Enter to continue...";
     cin.ignore();
     cin.get();
-    system("clear");
+    system("cls");
 }
 
 void Llenado_vector()
@@ -224,7 +224,7 @@ void Fusionar(int vectorInicial[], int tam, int vectorSecundario[], int tam2, in
 
 void procesarOpcion(int opcion)
 {
-    system("clear");
+    system("cls");
 
     switch (opcion)
     {
