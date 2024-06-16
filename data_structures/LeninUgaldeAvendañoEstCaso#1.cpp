@@ -8,7 +8,7 @@ int vectorResultado[20];
 
 void pause()
 {
-    std::cout << "\nPress Enter to continue...";
+    std::cout << "\nPresione Enter para continuar...";
     cin.ignore();
     cin.get();
     system("cls");
@@ -18,12 +18,12 @@ void Llenado_vector()
 {
     do
     {
-        cout << "\nIngrese el tamaño del vector: ";
+        cout << "\nIngrese el numero de valores del vector: ";
         cin >> tam;
 
         if (tam < 1 || tam > 10)
         {
-            cout << "El tamaño debe ser entre 1 y 10" << endl;
+            cout << "El numero de valores debe ser entre 1 y 10" << endl;
         }
     } while (tam < 1 || tam > 10);
 
@@ -106,7 +106,7 @@ void Promedio(int vectorInicial[], int tam)
 
     promedio = sum / tam;
 
-    cout << "El resultado del promedio de los números contenidos en el arreglo es: " << promedio << endl;
+    cout << "El resultado del promedio de los numeros contenidos en el arreglo es: " << promedio << endl;
     pause();
 }
 
@@ -123,7 +123,7 @@ void SumarAumentar(int vectorInicial[], int tam)
 
     resultado = sum + aumento;
 
-    cout << "El resultado de la suma de los números del vector es: " << sum << " y dicha suma aumentada en un 50% es: " << resultado << "." << endl;
+    cout << "El resultado de la suma de los numeros del vector es: " << sum << " y dicha suma aumentada en un 50% es: " << resultado << "." << endl;
     pause();
 }
 
@@ -177,12 +177,12 @@ void Llenado_vector2()
 {
     do
     {
-        cout << "\nIngrese el tamaño del segundo vector: ";
+        cout << "\nIngrese el numero de valores del segundo vector: ";
         cin >> tam2;
 
         if (tam2 < 1 || tam2 > 10)
         {
-            cout << "El tamaño debe ser entre 1 y 10" << endl;
+            cout << "El numero de valores debe ser entre 1 y 10" << endl;
         }
     } while (tam2 < 1 || tam2 > 10);
 
@@ -271,13 +271,13 @@ void menu()
     {
         cout << "\n***** Menu *****" << endl;
         cout << "1. Llenar el Vector Principal" << endl;
-        cout << "2. Ordenar Números Ascendentemente" << endl;
-        cout << "3. Ordenar Números Descendentemente" << endl;
+        cout << "2. Ordenar Numeros Ascendentemente" << endl;
+        cout << "3. Ordenar Numeros Descendentemente" << endl;
         cout << "4. Obtener Promedio" << endl;
         cout << "5. Sumar y aumentar" << endl;
         cout << "6. Mostrar Dato Mayor" << endl;
         cout << "7. Mostrar Dato Menor" << endl;
-        cout << "8. Fusión de vectores" << endl;
+        cout << "8. Fusion de vectores" << endl;
         cout << "9. Salir" << endl;
         cout << "Porfavor ingrese una opcion: ";
         cin >> opcion;
