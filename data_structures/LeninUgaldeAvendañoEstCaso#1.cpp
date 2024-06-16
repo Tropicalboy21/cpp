@@ -157,7 +157,7 @@ void Mayor(int vectorInicial[], int tam)
 
     Mayor = vectorInicial[tam - 1];
 
-    cout << "El dato mayor del vector es: " << Mayor << endl;
+    cout << "El valor mayor del vector es: " << Mayor << endl;
     pause();
 }
 
@@ -169,7 +169,7 @@ void Menor(int vectorInicial[], int tam)
 
     Menor = vectorInicial[0];
 
-    cout << "El dato mayor del vector es: " << Menor << endl;
+    cout << "El valor mayor del vector es: " << Menor << endl;
     pause();
 }
 
