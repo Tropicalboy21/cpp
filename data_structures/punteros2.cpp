@@ -21,5 +21,20 @@ int main()
 
     cout << "\nvalor Ptr es igual a : " << *valorPtr << endl;
 
+    int *ptr, *apt, *suma;
+    ptr = new int;
+    *ptr = 1300;
+    apt = new int;
+    *apt = 700;
+    suma = new int;
+    *suma = (*ptr) + (*apt);
+
+    cout << "\n \n*ptr es igual a: " << *ptr << endl;
+    cout << "ptr es igual a: " << ptr << endl;
+    cout << "apt es igual a: " << apt << endl;
+    cout << "*apt es igual a: " << *apt << endl;
+    cout << "suma es igual a: " << suma << endl;
+    cout << "*suma es igual a: " << *suma << endl;
+
     pause();
 }
