@@ -1,0 +1,1 @@
+    // aPtr = NULL;
