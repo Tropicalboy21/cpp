@@ -17,7 +17,9 @@ string kangaroo(int x1, int v1, int x2, int v2)
 }
 
 int main()
+
 {
+
     kangaroo(0, 2, 5, 3);
     kangaroo(0, 3, 4, 2);
 }
