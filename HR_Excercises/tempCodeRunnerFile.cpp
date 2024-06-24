@@ -1,1 +1,1 @@
-#include <bits/stdc++.h>
+    secondSmallestCookie = A[1];
