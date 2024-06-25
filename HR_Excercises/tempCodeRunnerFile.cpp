@@ -1,1 +1,1 @@
-    secondSmallestCookie = A[1];
+    priority_queue<int, vector<int>, greater<int>> myPQ;
