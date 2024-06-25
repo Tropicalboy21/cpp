@@ -72,6 +72,7 @@ void Pop()
              << endl;
 
         pila.elementos[pila.top] = 0;
+        pila.top--;
     }
     pause();
 }
