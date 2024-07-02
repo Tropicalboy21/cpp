@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// estructura de la pila NODOS
+// Estructura de la Pila Nodos
 
 struct Pilas {
     int valor; 
