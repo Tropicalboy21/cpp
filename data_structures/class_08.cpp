@@ -3,13 +3,6 @@ using namespace std;
 
 // estructura de la pila NODOS
 
-void Pause(){
-    std::cout << "\nPresione Enter para continuar...";
-    cin.ignore();
-    cin.get();
-    system("clear");
-}
-
 struct Pilas {
     int valor; 
     Pilas *direc_sig;
@@ -17,6 +10,13 @@ struct Pilas {
 
 *pila_original, *pila_aux;
 int opcion = 0;
+
+void Pause() {
+    std::cout << "\nPresione Enter para continuar...";
+    cin.ignore();
+    cin.get();
+    system("clear");
+}
 
 void Push() {
     if(pila_original == NULL){
@@ -36,13 +36,31 @@ void Push() {
     Pause();
 }
 
+void Pop() {
+    if(pila_original == NULL) {
+        cout << "\nLo sentimos la pila se encuentra vacia \n";
+        Pause();
+        return;
+    } 
+
+    pila_aux = new(Pilas);
+    pila_aux = pila_original;
+
+    cout << "\nEliminando dato ..." << endl;
+    cout << "\nEl dato eliminado es: " << pila_aux->valor << endl;
+
+    pila_original = pila_aux->direc_sig;
+    delete(pila_aux);
+    Pause();
+}
+
 
 void Imprimir() {
     if(pila_original == NULL) {
         cout << "\nLo sentimos la pila se encuentra vacia \n";
         Pause();
         return;
-    } else {
+    }
         int i = 0;
         pila_aux = pila_original;
 
@@ -51,12 +69,10 @@ void Imprimir() {
             pila_aux = pila_aux->direc_sig;
             i++;
         }
-    }
     Pause();
 }
 
-void procesarOpcion(int opcion)
-{
+void procesarOpcion(int opcion) {
     system("clear");
 
     switch (opcion)
@@ -65,7 +81,7 @@ void procesarOpcion(int opcion)
         Push();
         break;
     case 2:
-        // Pop();
+        Pop();
         break;
     case 3:
         Imprimir();
@@ -82,8 +98,7 @@ void procesarOpcion(int opcion)
     }
 }
 
-void Menu()
-{
+void Menu() {
     do
     {
         cout << "\t.:           Menu          :." << endl;
@@ -99,10 +114,7 @@ void Menu()
     } while (opcion != 4);
 }
 
-
-
 int main() {
-    
     Menu();
 
     return 0;
