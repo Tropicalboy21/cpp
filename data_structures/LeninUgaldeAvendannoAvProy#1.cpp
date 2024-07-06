@@ -10,7 +10,7 @@ struct Pila {
 int opcion = 0;
 
 void Pause() {
-    cout << "\n\nPresione enter para continuar";
+    cout << "\nPresione enter para continuar";
     cin.ignore();
     cin.get();
     system("clear");
@@ -20,7 +20,7 @@ void Insertar() {
     nuevo = new(Pila);
     cout << "Ingrese el dato en la pila: ";
     cin >> nuevo->valor;
-    cout << "El Dato fue ingresado exitosamente" << endl;
+    cout << "\nEl Dato fue ingresado exitosamente" << endl;
     nuevo->direc_sig = primero;
     primero = nuevo;
     Pause();
@@ -107,8 +107,7 @@ void Mostrar() {
     int i = 0;
     nuevo = primero;
 
-    while (nuevo != NULL)
-    {
+    while (nuevo != NULL) {
         cout << "Elemento No. " << i << " : " << nuevo->valor << endl;
         nuevo = nuevo->direc_sig;
         i++;
