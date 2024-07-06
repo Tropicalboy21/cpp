@@ -27,11 +27,50 @@ void Insertar() {
 }
 
 void Eliminar() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la pila se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
 
+    nuevo = new(Pila);
+    nuevo = primero;
+    cout << "Eliminando dato ..." << endl;
+    cout << "El dato eliminado es: " << nuevo->valor << endl;
+    primero = nuevo->direc_sig;
+    delete(nuevo);
+    Pause();
 }
 
 void buscarDato() {
+    nuevo = new(Pila);
+    nuevo = primero;
+    
+    int dato, i = 0;
+    bool encontrado = false;
 
+    if (nuevo != NULL){
+        cout << "Digite el valor que desea buscar: ";
+        cin >> dato;
+
+        while(encontrado != true) {
+            if(nuevo->valor == dato){
+                cout << "\nEl dato " << dato << " el dato encontrado dentro de la Pila, en la posicion No. " << i << endl;
+                encontrado = true;
+                Pause();
+                return;
+            }
+            nuevo = nuevo->direc_sig;
+            i++;
+        }
+
+        if(encontrado == false) {
+            cout << "\nLo sentimos, " << dato << "no es parte de la pila." << endl;
+        }
+    } else {
+        cout << "Lo sentimos la pila esta vacia." << endl;
+        Pause();
+    }
 }
 
 void modificarDato() {
