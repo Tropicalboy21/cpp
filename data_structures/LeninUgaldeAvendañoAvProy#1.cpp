@@ -13,7 +13,7 @@ void Pause() {
     cout << "\nPresione enter para continuar";
     cin.ignore();
     cin.get();
-    system("cls");
+    system("clear");
 }
 
 void Insertar() {
@@ -357,7 +357,7 @@ void promedioModa() {
 }
 
 void procesarOpcion(int opcion) {
-    system("cls");
+    system("clear");
     switch (opcion)
     {
     case 1:
