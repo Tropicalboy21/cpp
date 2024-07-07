@@ -6,7 +6,7 @@ struct Pila {
     Pila *direc_sig;
 }
 
-*primero, *auxiliar, *nuevo;
+*primero = NULL, *auxiliar, *nuevo;
 int opcion = 0;
 
 void Pause() {
@@ -42,6 +42,23 @@ void Eliminar() {
     Pause();
 }
 
+void Mostrar(Pila *pila, const string& mensaje) {
+    if(pila == NULL) {
+        cout << "Lo sentimos, la pila esta vacia." << endl;
+        Pause();
+        return;
+    }
+
+    int i = 0;
+
+    cout << mensaje << endl;
+    while (pila != NULL) {
+        cout << "Elemento No. " << i << " : " << pila->valor << endl;
+        pila = pila->direc_sig;
+        i++;
+    }
+}
+
 void buscarDato() {
     nuevo = new(Pila);
     nuevo = primero;
@@ -74,19 +91,185 @@ void buscarDato() {
 }
 
 void modificarDato() {
+    nuevo = new(Pila);
+    nuevo = primero;
 
+    int dato, nuevoDato, i = 0;
+    bool encontrado = false;
+
+    if(primero != NULL) {
+        cout << "ingrese el valor que desea modificar: ";
+        cin >> dato;
+
+        cout << "\n\ningrese el nuevo valor: ";  
+        cin >> nuevoDato;
+
+        while(encontrado != true) {
+            if(nuevo->valor == dato){
+                nuevo->valor = nuevoDato;
+                cout << "El dato " << dato << " fue encontrado y modificado por el nuevo valor " << nuevoDato << endl;
+                encontrado = true;
+                Pause();
+                return;
+            }
+            nuevo = nuevo->direc_sig;
+            i++;
+        }
+    } else {
+        cout << "Lo sentimos, la pila esta vacia" << endl;
+        Pause();
+        return;
+    }
 }
 
 void eliminarDato() {
+    nuevo = new(Pila);
+    nuevo = primero;
+    auxiliar = NULL;
 
+    int dato, i = 0;
+    bool encontrado = false;
+
+    if(nuevo != NULL) {
+        cout << "ingrese el valor que desea eliminar: ";
+        cin >> dato;
+
+        while (!encontrado) {
+
+            if(nuevo->valor == dato) {
+                cout << "Eliminando dato "<< dato <<" ..." << endl;
+                cout << "El dato " << nuevo->valor << " fue eliminado." << endl;
+            if (auxiliar == NULL) {
+                primero = nuevo->direc_sig;
+            } else {
+                auxiliar->direc_sig = nuevo->direc_sig;
+            }
+            delete(nuevo);
+            encontrado = true;
+            Pause();
+            return;
+            }
+            auxiliar = nuevo;
+            nuevo = nuevo->direc_sig;
+            i++;
+        }
+    } else {
+        cout << "Lo sentimos, el valor ingresado no existe.";
+        Pause();
+        return;
+    }
 }
 
 void mayorMenor() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la pila se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
 
+    nuevo = new(Pila);
+    nuevo = primero;
+    int mayor = nuevo->valor, menor = nuevo-> valor;
+
+    while(nuevo != NULL){
+        if(nuevo->valor > mayor){
+            mayor = nuevo->valor;
+        } else if(nuevo->valor < menor){
+            menor = nuevo->valor;
+        }
+        nuevo = nuevo->direc_sig;
+    }
+
+    cout << "El valor mayor de la Pila es: " << mayor << endl << "El valor menor de la Pila es: " << menor << endl;
+    Pause();
+}
+
+Pila* copiarPila(Pila *original) {
+    if(original == NULL) {
+        return NULL;
+    }
+
+    Pila *copia = new Pila;
+    copia->valor = original->valor;
+    copia->direc_sig = copiarPila(original->direc_sig);
+    return copia;
+}
+
+void limpiarPila(Pila *&pila) {
+    while (pila != NULL) {
+        Pila *temp = pila;
+        pila = pila->direc_sig;
+        delete temp;
+    }
+}
+
+void ordenarAscend(Pila *&copia) {
+    Pila *ordenada = NULL;
+
+    while (copia != NULL) {
+        Pila *temp = copia;
+        copia = copia->direc_sig;
+
+        if(ordenada == NULL || temp->valor < ordenada->valor){
+            temp->direc_sig = ordenada;
+            ordenada = temp;
+        } else {
+            Pila *actual = ordenada;
+
+            while (actual->direc_sig != NULL && actual->direc_sig->valor < temp->valor) {
+                actual = actual->direc_sig;
+            }
+            temp->direc_sig = actual->direc_sig;
+            actual->direc_sig = temp;
+        }
+    }
+    copia = ordenada;
+}
+
+void ordenarDescend(Pila *&copia) {
+    Pila *ordenada = NULL;
+
+    while (copia != NULL) {
+        Pila *temp = copia;
+        copia = copia->direc_sig;
+
+        if(ordenada == NULL || temp->valor > ordenada->valor){
+            temp->direc_sig = ordenada;
+            ordenada = temp;
+        } else {
+            Pila *actual = ordenada;
+
+            while (actual->direc_sig != NULL && actual->direc_sig->valor > temp->valor) {
+                actual = actual->direc_sig;
+            }
+            temp->direc_sig = actual->direc_sig;
+            actual->direc_sig = temp;
+        }
+    }
+    copia = ordenada;
 }
 
 void ascendDescend() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la pila se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
 
+    // Orden ascendente
+    Pila *copia = copiarPila(primero);
+    ordenarAscend(copia);
+    Mostrar(copia, "La pila ordenada en orden ascendente:");
+    limpiarPila(copia);
+
+    // Orden descendente
+    copia = copiarPila(primero);
+    ordenarDescend(copia);
+    Mostrar(copia, "\nLa pila ordenada en orden descendente:");
+    limpiarPila(copia);
+
+    Pause();
+    
 }
 
 void sumarAumentar() {
@@ -97,23 +280,6 @@ void promedioModa() {
 
 }
 
-void Mostrar() {
-    if(primero == NULL) {
-        cout << "Lo sentimos, la pila esta vacia." << endl;
-        Pause();
-        return;
-    }
-
-    int i = 0;
-    nuevo = primero;
-
-    while (nuevo != NULL) {
-        cout << "Elemento No. " << i << " : " << nuevo->valor << endl;
-        nuevo = nuevo->direc_sig;
-        i++;
-    }
-    Pause();
-}
 
 void procesarOpcion(int opcion) {
     system("clear");
@@ -126,7 +292,8 @@ void procesarOpcion(int opcion) {
         Eliminar();
         break;
     case 3:
-        Mostrar();
+        Mostrar(primero, "Mostando datos de la pila:");
+        Pause();
         break;
     case 4:
         buscarDato();
@@ -154,7 +321,7 @@ void procesarOpcion(int opcion) {
         exit(EXIT_SUCCESS);
         break;
     default:
-        cout << "\nOpcion digitada es invalida";
+        cout << "\nOpcion digitada es invalida\n";
         Pause();
         break;
     }

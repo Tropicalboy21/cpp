@@ -1,1 +1,1 @@
-        BuscarNodo();
+            primero = nuevo->direc_sig;
