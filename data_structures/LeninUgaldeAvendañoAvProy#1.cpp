@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 struct Pila {
@@ -317,7 +318,7 @@ void promedioModa() {
     Pila *copia = copiarPila(primero);
     ordenarAscend(copia);
 
-    int moda = INT_MIN;
+    vector<int> moda;
     int maxRepeticiones = 0;
     int repeticiones = 1;
 
@@ -332,26 +333,45 @@ void promedioModa() {
         } else {
             if (repeticiones > maxRepeticiones) {
                 maxRepeticiones = repeticiones;
-                moda = anterior->valor;
+                moda.clear();
+                moda.push_back(anterior->valor);
+            } else if (repeticiones == maxRepeticiones) {
+                moda.push_back(anterior->valor);
             }
             repeticiones = 1;
         }
         anterior = actual;
     }
 
-    // Verificar la última serie de repeticiones
     if (repeticiones > maxRepeticiones) {
         maxRepeticiones = repeticiones;
-        moda = anterior->valor;
+        moda.clear();
+        moda.push_back(anterior->valor);
+    } else if (repeticiones == maxRepeticiones) {
+        moda.push_back(anterior->valor);
     }
 
     cout << "El resultado del promedio de los datos de la pila es: " << promedio << endl;
     
     if (maxRepeticiones > 1) {
-        cout << "\nEl resultado de la moda de los datos de la pila es: " << moda << " con " << maxRepeticiones << " repeticiones\n";
+        if (moda.size() > 1){
+            cout << "\nEl resultado de la moda de los datos de la pila es: { ";
+            for (int i = 0; i < moda.size(); i++) {
+                cout <<  moda[i] << " ";
+            }
+            cout << "} , con " << maxRepeticiones << " repeticiones cada uno\n";
+        } else {
+            cout << "\nEl resultado de la moda de los datos de la pila es: ";
+            for (int i = 0; i < moda.size(); i++) {
+                cout <<  moda[i] << " ";
+            }
+            cout << ", con " << maxRepeticiones << " repeticiones\n"; 
+        }
     } else {
         cout << "\nNo hay valores repetidos en la pila\n";
     }
+
+    limpiarPila(copia);
 
     Pause();    
 }
