@@ -53,7 +53,7 @@ void despliegaNodo() {
             i++;
         }
     } else {
-        cout << "la cola con prioridad esta vacia" << endl;;
+        cout << "la cola con prioridad esta vacia" << endl;
     }
     Pause();
 }
@@ -83,10 +83,11 @@ void buscarNodo() {
             actual = actual->siguiente;
             i++;
         }
-        if(encontrado == false)
+        if(encontrado == false) {
             cout << "El dato buscado no es parte de la cola con prioridad" << endl;
+        }
     } else {
-        cout << "la cola con prioridad esta vacia" << endl;;
+        cout << "la cola con prioridad esta vacia" << endl;
     }
     Pause();
 }
@@ -122,8 +123,9 @@ void modificarNodo() {
             actual = actual->siguiente;
             i++;
         }
-        if(encontrado == false)
-            cout << "El dato buscado no es parte de la cola con prioridad" << endl;;
+        if(encontrado == false) {
+            cout << "El dato buscado no es parte de la cola con prioridad" << endl;
+        }
     } else {
         cout << "la cola con prioridad esta vacia" << endl;
     }
