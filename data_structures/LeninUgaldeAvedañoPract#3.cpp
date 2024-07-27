@@ -40,7 +40,6 @@ void limpiarCola(Nodo *&cola){
     }
 }
 
-
 void insertarNodo() {
     Nodo *nuevo = new Nodo();
     cout << "Ingrese los elementos del nuevo nodo:" << endl;
@@ -177,16 +176,17 @@ void eliminarNodo() {
                 
                 delete(actual);
                 encontrado = true;
+                cout << "\n------- Nodo eliminado con exito -------\n" << endl;;
             }
             anterior = actual;
             actual = actual->siguiente;
             i++;
         }
         if(encontrado == false) {
-            cout << "Lo sentimos el dato no es parte de la cola" << endl;
+            cout << "\nLo sentimos el dato no es parte de la cola" << endl;
         }
     } else {
-        cout << "Lo sentimos, la cola esta vacia" << endl;
+        cout << "\nLo sentimos, la cola esta vacia" << endl;
     }
     Pause();
 }
@@ -220,7 +220,6 @@ void ordenarAscend() {
     string mensaje = "Elementos ordenados ascendentemente: ";
     despliegaNodo(copia, mensaje);
     limpiarCola(copia);
-    Pause();
 }
 
 void ordenarDescend() {
@@ -252,7 +251,6 @@ void ordenarDescend() {
     string mensaje = "Elementos ordenados descendentemente: ";
     despliegaNodo(copia, mensaje);
     limpiarCola(copia);
-    Pause();
 }
 
 void Prioridad() {

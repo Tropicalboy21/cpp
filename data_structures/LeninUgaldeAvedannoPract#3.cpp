@@ -17,7 +17,7 @@ void Pause(){
     cout << "\nPresione enter para continuar";
     cin.ignore();
     cin.get();
-    system("cls");
+    system("clear");
 }
 
 Nodo* copiarCola(Nodo *original){
@@ -39,7 +39,6 @@ void limpiarCola(Nodo *&cola){
         delete temp;
     }
 }
-
 
 void insertarNodo() {
     Nodo *nuevo = new Nodo();
@@ -71,7 +70,7 @@ void despliegaNodo(Nodo *cola, string& mensaje) {
     cout << mensaje << "\n" << endl;
 
     while(cola != NULL) {
-        cout << "Posicion en la cola: " << i << ", Prioridad: " << cola->prioridad << ", Dato: " << cola->dato  << endl;
+        cout << "Posicion en la cola: " << i << " Prioridad: " << cola->prioridad << ", Dato: " << cola->dato  << endl;
         cola = cola->siguiente;
         i++;
     }
@@ -177,16 +176,17 @@ void eliminarNodo() {
                 
                 delete(actual);
                 encontrado = true;
+                cout << "\n------- Nodo eliminado con exito -------\n" << endl;;
             }
             anterior = actual;
             actual = actual->siguiente;
             i++;
         }
         if(encontrado == false) {
-            cout << "Lo sentimos el dato no es parte de la cola" << endl;
+            cout << "\nLo sentimos el dato no es parte de la cola" << endl;
         }
     } else {
-        cout << "Lo sentimos, la cola esta vacia" << endl;
+        cout << "\nLo sentimos, la cola esta vacia" << endl;
     }
     Pause();
 }
@@ -220,7 +220,6 @@ void ordenarAscend() {
     string mensaje = "Elementos ordenados ascendentemente: ";
     despliegaNodo(copia, mensaje);
     limpiarCola(copia);
-    Pause();
 }
 
 void ordenarDescend() {
@@ -252,7 +251,6 @@ void ordenarDescend() {
     string mensaje = "Elementos ordenados descendentemente: ";
     despliegaNodo(copia, mensaje);
     limpiarCola(copia);
-    Pause();
 }
 
 void Prioridad() {
@@ -302,7 +300,7 @@ void Prioridad() {
 }
 
 void procesarOpcion(int opcion) {
-    system("cls");
+    system("clear");
 
     string mensaje = "Elementos almacenados en la cola con prioridades";
 
@@ -345,7 +343,7 @@ void procesarOpcion(int opcion) {
 }
 
 void Menu() {
-    system("cls");
+    system("clear");
     do
     {
         cout << "\t.:                   Menu                  :." << endl;
