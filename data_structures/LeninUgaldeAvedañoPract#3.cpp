@@ -166,12 +166,17 @@ void eliminarNodo() {
         while (actual != NULL) {
             if(strcmp(actual->dato, datoBuscado) == 0 && actual->prioridad == prioridadBuscada) {
                 cout << "El dato fue encontrado en la posicion " << i << " , con el valor " << actual->dato << " , con prioridad " << actual->prioridad << " en la cola" << endl; 
-                cout << "\nEliminando dato ...";
 
                 if(anterior == NULL){
                     primero = actual->siguiente;
+                    if(primero == NULL){
+                        ultimo = NULL;
+                    }
                 } else {
                     anterior->siguiente = actual->siguiente;
+                    if (anterior->siguiente == NULL) {
+                        ultimo = anterior;
+                    }
                 }
                 
                 delete(actual);
@@ -287,7 +292,7 @@ void Prioridad() {
                 cout << "\nEl numero de elementos con la prioridad ingresada es: " << contador << endl;
 
             } else if (datos.size() == 1 ){
-                cout << "Solo hay un elemento con prioridad " << prioridadBuscada << " , es: ";
+                cout << "\nSolo hay un elemento con prioridad " << prioridadBuscada << " , es: ";
                 for(int i = 0; i < datos.size(); i++){
                     cout << datos[i] << endl;
                 }
