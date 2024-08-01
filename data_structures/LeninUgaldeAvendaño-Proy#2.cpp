@@ -1,12 +1,8 @@
 #include <iostream>
-#include <vector>
-#include <algorithm> 
-#define EXT 20
 using namespace std;
 
 struct Nodo {
-    char dato[EXT];
-    int prioridad;
+    int dato;
     Nodo *siguiente;
 }
 
@@ -26,8 +22,7 @@ Nodo* copiarCola(Nodo *original){
     }
 
     Nodo *copia = new Nodo;
-    strncpy(copia->dato, original->dato, EXT);
-    copia->prioridad = original->prioridad;
+    copia->dato = original->dato;
     copia->siguiente = copiarCola(original->siguiente);
     return copia;
 }
@@ -42,11 +37,8 @@ void limpiarCola(Nodo *&cola){
 
 void insertarNodo() {
     Nodo *nuevo = new Nodo();
-    cout << "Ingrese los elementos del nuevo nodo:" << endl;
-    cout << "Dato: ";
+    cout << "Ingrese el dato del nuevo nodo: ";
     cin >> nuevo->dato;
-    cout<< "Prioridad: ";
-    cin >> nuevo->prioridad;
 
     nuevo->siguiente = NULL;
 
@@ -57,10 +49,28 @@ void insertarNodo() {
         ultimo->siguiente = nuevo;
         ultimo = nuevo;
     }
+    cout << "\nNodo insertado con exito" << endl;
     Pause();
 }
 
-void despliegaNodo(Nodo *cola, string& mensaje) {
+void Eliminar() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la cola se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
+
+    Nodo *actual = new Nodo();
+    actual = primero;
+    
+    cout << "Eliminando dato..." << endl;
+    cout << "El elemento eliminado es: " << actual->dato;
+    primero = actual->siguiente;
+    delete(actual);
+    Pause();
+}
+
+void despliegaNodo(Nodo *cola, const string& mensaje) {
     if(cola == NULL) {
         cout << "\nLo sentimos, la pila esta vacia." << endl;
         Pause();
@@ -70,7 +80,7 @@ void despliegaNodo(Nodo *cola, string& mensaje) {
     cout << mensaje << "\n" << endl;
 
     while(cola != NULL) {
-        cout << "Posicion en la cola: " << i << " Prioridad: " << cola->prioridad << ", Dato: " << cola->dato  << endl;
+        cout << "Elemento en posicion " << i << " de la cola: " << cola->dato << endl;
         cola = cola->siguiente;
         i++;
     }
@@ -82,19 +92,15 @@ void buscarNodo() {
     actual = primero;
     int i = 0;
     bool encontrado = false;
-    char datoBuscado[EXT];
-    int prioridadBuscada;
+    int datoBuscado;
 
     if(primero != NULL) {
-        cout << "Ingrese los elementos que desea buscar en la cola con prioridad: " << endl;
-        cout << "Dato: ";
+        cout << "Ingrese el elemento que desea buscar en la cola con prioridad: ";
         cin >> datoBuscado;
-        cout<< "Prioridad: ";
-        cin >> prioridadBuscada;
 
         while (actual != NULL) {
-            if(strcmp(actual->dato, datoBuscado) == 0 && actual->prioridad == prioridadBuscada) {
-                cout << "El dato buscado se encuentra en la posicion " << i << " , con el valor " << actual->dato << " , con prioridad " << actual->prioridad << " en la cola" << endl; 
+            if(actual->dato == datoBuscado) {
+                cout << "El dato buscado se encuentra en la posicion " << i << " , con el valor " << actual->dato << " en la cola" << endl; 
                 encontrado = true;
             }
             actual = actual->siguiente;
@@ -114,24 +120,17 @@ void modificarNodo() {
     actual = primero;
     int i = 0;
     bool encontrado = false;
-    char datoBuscado[EXT];
-    int prioridadBuscada;
+    int datoBuscado;
 
     if(primero != NULL){
-        cout << "Ingrese los elementos que desea modificar en la cola" << endl;
-        cout << "Dato: ";
+        cout << "Ingrese el elementos que desea modificar en la cola: ";
         cin >> datoBuscado;
-        cout << "Prioridad: ";
-        cin >> prioridadBuscada;
 
         while(actual != NULL){
-            if (strcmp(actual->dato, datoBuscado) == 0 && actual->prioridad == prioridadBuscada){
-                cout << "El dato buscado se encuentra en la posicion " << i << " , con el valor " << actual->dato << " , con prioridad " << actual->prioridad << " en la cola" << endl;
-                cout << "\nIngrese los nuevos elementos: " << endl;
-                cout << "Dato: ";
+            if (actual->dato == datoBuscado){
+                cout << "El dato buscado se encuentra en la posicion " << i << " , con el valor " << actual->dato << " en la cola" << endl;
+                cout << "\nIngrese el nuevo elemento: ";
                 cin >> actual->dato;
-                cout << "Prioridad: ";
-                cin >> actual->prioridad;
                 cout << "\n------- Nodo modificado con exito -------" << endl;;
                 encontrado = true;
             }
@@ -153,20 +152,14 @@ void eliminarNodo() {
     actual = primero;
     int i = 0;
     bool encontrado = false;
-    char datoBuscado[EXT];
-    int prioridadBuscada;
+    int datoBuscado;
 
     if(primero != NULL) {
-        cout << "Ingrese los elementos que desea Eliminar de la cola con prioridad: " << endl;
-        cout << "Dato: ";
+        cout << "Ingrese el elemento que desea eliminar de la cola: ";
         cin >> datoBuscado;
-        cout<< "Prioridad: ";
-        cin >> prioridadBuscada;
-
         while (actual != NULL) {
-            if(strcmp(actual->dato, datoBuscado) == 0 && actual->prioridad == prioridadBuscada) {
-                cout << "El dato fue encontrado en la posicion " << i << " , con el valor " << actual->dato << " , con prioridad " << actual->prioridad << " en la cola" << endl; 
-
+            if(actual->dato == datoBuscado) {
+                cout << "El dato fue encontrado en la posicion " << i << " , con el valor " << actual->dato << " en la cola" << endl; 
                 if(anterior == NULL){
                     primero = actual->siguiente;
                     if(primero == NULL){
@@ -178,14 +171,17 @@ void eliminarNodo() {
                         ultimo = anterior;
                     }
                 }
-                
-                delete(actual);
+                Nodo *temp = actual;
+                actual = actual->siguiente;
+
+                delete(temp);
                 encontrado = true;
                 cout << "\n------- Nodo eliminado con exito -------\n" << endl;;
+            } else {
+                anterior = actual;
+                actual = actual->siguiente;
+                i++;
             }
-            anterior = actual;
-            actual = actual->siguiente;
-            i++;
         }
         if(encontrado == false) {
             cout << "\nLo sentimos el dato no es parte de la cola" << endl;
@@ -196,7 +192,62 @@ void eliminarNodo() {
     Pause();
 }
 
+void mostrarMayor() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la cola se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
+
+    Nodo *actual = new Nodo();
+    actual = primero;
+    int mayor = actual->dato, i = 0;
+
+    while (actual != NULL)
+    {
+        if(actual->dato > mayor){
+            mayor = actual->dato;
+        }
+        actual = actual->siguiente;
+        i++;
+    }
+
+    cout << "El dato mayor de la cola es: " << mayor << " y se encuentra en la posición: " << i << endl;
+    Pause();
+
+}
+
+void mostrarMenor() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la cola se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
+
+    Nodo *actual = new Nodo();
+    actual = primero;
+    int menor = actual->dato, i = 0;
+
+    while (actual != NULL)
+    {
+        if(actual->dato < menor){
+            menor = actual->dato;
+        }
+        actual = actual->siguiente;
+        i++;
+    }
+    
+    cout << "El dato menor de la cola es: " << menor << " y se encuentra en la posición: " << i << endl;
+    Pause();   
+}
+
 void ordenarAscend() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la cola se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
+
     Nodo *actual = new Nodo();
     actual = primero;
 
@@ -206,13 +257,12 @@ void ordenarAscend() {
     while(copia != NULL){
         Nodo *temp = copia;
         copia = copia->siguiente;
-        if (ordenada == NULL || temp->prioridad < ordenada->prioridad){
+        if (ordenada == NULL || temp->dato < ordenada->dato){
             temp->siguiente = ordenada;
             ordenada = temp;
         } else {
             Nodo *reciente = ordenada;
-
-            while (reciente->siguiente != NULL && reciente->siguiente->prioridad <= temp->prioridad)
+            while (reciente->siguiente != NULL && reciente->siguiente->dato <= temp->dato)
             {
                 reciente = reciente->siguiente;
             }
@@ -222,12 +272,19 @@ void ordenarAscend() {
     }
     copia = ordenada;
 
+
     string mensaje = "Elementos ordenados ascendentemente: ";
     despliegaNodo(copia, mensaje);
     limpiarCola(copia);
 }
 
 void ordenarDescend() {
+    if(primero == NULL) {
+        cout << "Lo sentimos la cola se encuentra vacia" << endl;
+        Pause();
+        return;
+    }
+
     Nodo *actual = new Nodo();
     actual = primero;
 
@@ -237,13 +294,12 @@ void ordenarDescend() {
     while(copia != NULL){
         Nodo *temp = copia;
         copia = copia->siguiente;
-        if (ordenada == NULL || temp->prioridad > ordenada->prioridad){
+        if (ordenada == NULL || temp->dato > ordenada->dato){
             temp->siguiente = ordenada;
             ordenada = temp;
         } else {
             Nodo *reciente = ordenada;
-
-            while (reciente->siguiente != NULL && reciente->siguiente->prioridad >= temp->prioridad)
+            while (reciente->siguiente != NULL && reciente->siguiente->dato >= temp->dato)
             {
                 reciente = reciente->siguiente;
             }
@@ -258,56 +314,10 @@ void ordenarDescend() {
     limpiarCola(copia);
 }
 
-void Prioridad() {
-    Nodo *actual = new Nodo();
-    actual = primero;
-    int prioridadBuscada;
-    bool encontrado = false;
-    int contador = 0;
-    vector<string> datos;
-
-    if(primero != NULL) {
-        cout << "***** Busqueda por prioridad *****" << endl;
-        cout << "Ingrese la prioridad de los elementos que desea buscar: ";
-        cin >> prioridadBuscada;
-
-        while (actual != NULL) {
-            if (actual->prioridad == prioridadBuscada)
-            {
-                string str(actual->dato);
-                contador++;
-                datos.push_back(str);
-                encontrado = true;
-            }
-            actual = actual->siguiente;
-        }
-        if (encontrado == false) {
-            cout << "\nNo hay ningun elemento con esa prioridad en la cola" << endl;
-        } else {
-            if(datos.size() > 1){
-                cout << "\nLos elementos con prioridad " << prioridadBuscada << " son:" << endl;
-                for(int i = 0; i < datos.size(); i++){
-                    cout << datos[i] << endl;
-                }
-                cout << "\nEl numero de elementos con la prioridad ingresada es: " << contador << endl;
-
-            } else if (datos.size() == 1 ){
-                cout << "\nSolo hay un elemento con prioridad " << prioridadBuscada << " , es: ";
-                for(int i = 0; i < datos.size(); i++){
-                    cout << datos[i] << endl;
-                }
-            }
-        }
-    } else {
-        cout << "\nLo sentimos, la cola esta vacia" << endl; 
-    }
-    Pause();
-}
-
 void procesarOpcion(int opcion) {
     system("clear");
 
-    string mensaje = "Elementos almacenados en la cola con prioridades";
+    string mensaje = "Elementos almacenados en la cola";
 
     switch (opcion)
     {
@@ -315,7 +325,7 @@ void procesarOpcion(int opcion) {
         insertarNodo();
         break;
     case 2:
-        //Eliminar();
+        Eliminar();
         break;
     case 3:
         despliegaNodo(primero, mensaje);
@@ -330,10 +340,10 @@ void procesarOpcion(int opcion) {
         eliminarNodo(); // eliminar todas las repeticiones
         break;
     case 7:
-        // mostrarMayor();
+        mostrarMayor();
         break;
     case 8:
-        // mostrarMenor();
+        mostrarMenor();
         break;
     case 9:
         ordenarDescend();
@@ -373,7 +383,7 @@ void Menu() {
         cin >> opcion;
 
         procesarOpcion(opcion);
-    } while (opcion != 9);
+    } while (opcion != 11);
 }
 
 int main() {
