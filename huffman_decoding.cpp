@@ -29,8 +29,6 @@ void decode_huff(node * root, string s) {
             decodedWord += current->data;
             current = root;
         }
-
     }
-
     cout << decodedWord;
 }
