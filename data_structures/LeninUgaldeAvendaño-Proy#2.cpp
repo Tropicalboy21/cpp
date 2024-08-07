@@ -381,7 +381,6 @@ void Menu() {
         cout << "\t11. Salir" << endl;
         cout << "\tPorfavor ingrese una opcion: ";
         cin >> opcion;
-
         procesarOpcion(opcion);
     } while (opcion != 11);
 }
