@@ -79,12 +79,12 @@ int main() {
     words2.push_back("bcde");
 
     vector<string> words3;
-    words2.push_back("aab");
-    words2.push_back("aac");
-    words2.push_back("aacghgh");
-    words2.push_back("aabghgh");
+    words3.push_back("aab");
+    words3.push_back("aac");
+    words3.push_back("aacghgh");
+    words3.push_back("aabghgh");
 
-    noPrefix(words);
+    noPrefix(words3);
 
     return 0;
 }
